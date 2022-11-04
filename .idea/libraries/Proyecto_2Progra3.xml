@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Proyecto_2Progra3">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/Chat/src/main/java" />
+    </SOURCES>
+  </library>
+</component>

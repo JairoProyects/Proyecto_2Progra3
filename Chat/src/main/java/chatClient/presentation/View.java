@@ -8,13 +8,10 @@ import chatServer.Service;
 import chatServer.data.UsuarioDao;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
 import java.util.Observer;
 
 public class View implements Observer {
@@ -29,6 +26,7 @@ public class View implements Observer {
     private JTextField mensaje;
     private JButton post;
     private JButton logout;
+    private JButton Register;
 
     Model model;
     Controller controller;
@@ -48,6 +46,7 @@ public class View implements Observer {
                 User u = new User(id.getText(), new String(clave.getPassword()), "");
                 id.setBackground(Color.white);
                 clave.setBackground(Color.white);
+
                 try {
                     if(service.login(u) != null){
                         controller.login(u);
@@ -114,6 +113,25 @@ public class View implements Observer {
             public void actionPerformed(ActionEvent e) {
                 String text = mensaje.getText();
                 controller.post(text);
+            }
+        });
+        //REGISTER
+        Register.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTextField nombre = new JTextField("");
+                Object[] fields = {
+                        "Nombre:", nombre,
+                };
+                int option = JOptionPane.showConfirmDialog(panel, fields, id.getText(), JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                if (option == JOptionPane.OK_OPTION) {
+                    User u = new User(id.getText(), new String(clave.getPassword()), nombre.getText());
+                    try {
+                        controller.register(new User(id.getText(), new String(clave.getPassword()), nombre.getText()));
+                        } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
             }
         });
     }

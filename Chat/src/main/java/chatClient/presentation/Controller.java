@@ -28,8 +28,8 @@ public class Controller {
 
     public void login(User u) throws Exception{
         User logged=ServiceProxy.instance().login(u);
-        //usuarioDao.create(logged);
         System.out.println(u.getId() + " " + u.getClave());
+//        usuarioDao.create(logged);
      //   System.out.println(usuarioDao.read("001").getId() + " " + usuarioDao.read("001").getClave());
         model.setCurrentUser(logged);
         model.commit(Model.USER);
@@ -57,5 +57,8 @@ public class Controller {
     public void deliver(Message message){
         model.messages.add(message);
         model.commit(Model.CHAT);       
-    }    
+    }
+    public void register(User u) throws Exception{
+        ServiceProxy.instance().register(u);
+    }
 }

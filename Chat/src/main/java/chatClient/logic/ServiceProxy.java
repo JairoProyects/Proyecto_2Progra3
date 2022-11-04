@@ -45,7 +45,6 @@ public class ServiceProxy implements IService{
         skt.shutdownOutput();
         skt.close();
     }
-    
     public User login(User u) throws Exception{
         connect();
         try {
@@ -83,7 +82,29 @@ public class ServiceProxy implements IService{
         } catch (IOException ex) {
             
         }   
-    }  
+    }
+
+    @Override
+    public void register(User u) throws Exception {
+//        connect();
+//        try {
+//            out.writeInt(Protocol.REGISTER);
+//            out.writeObject(u);
+//            out.flush();
+//            int response = in.readInt();
+//            if (response==Protocol.ERROR_NO_ERROR){
+//                User u1=(User) in.readObject();
+//                this.start();
+//            }
+//            else {
+//                disconnect();
+//                throw new Exception("No remote user");
+//            }
+//        } catch (IOException | ClassNotFoundException ex) {
+//            return;
+//        }
+        theInstance.register(u);
+    }
 
     // LISTENING FUNCTIONS
    boolean continuar = true;    

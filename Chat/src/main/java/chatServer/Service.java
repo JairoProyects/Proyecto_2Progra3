@@ -26,7 +26,6 @@ public class Service implements IService{
     
     public User login(User p) throws Exception{
         if (usuarioDao.read(p.getId()) != null) {
-            System.out.println(usuarioDao.findbyCedula("001").get(0).getNombre());
             return p;
         } else {
             throw new Exception("User does not exist");
@@ -49,5 +48,9 @@ public class Service implements IService{
 
     public void logout(User p) throws Exception{
         //nothing to do
+    }
+
+    public void register(User p) throws Exception{
+        usuarioDao.create(p);
     }
 }
