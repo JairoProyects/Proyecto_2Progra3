@@ -57,22 +57,25 @@ public class Server {
                           out.flush();
                           skt.close();
                        System.out.println("Conexion cerrada...");
+                       System.out.println(service.getData().getMessages().toString());
                    } break;
                 case Protocol.REGISTER:
                     try {
                         service.register((User) in.readObject());
                         out.writeInt(Protocol.ERROR_NO_ERROR);
                         out.flush();
-//                        skt.close();
+                        skt.close();
                     } catch (Exception ex) {
                         out.writeInt(Protocol.ERROR_REGISTER);
                         out.flush();
                         skt.close();
                         System.out.println("Conexion cerrada...");
                     } break;
+                   default:  out.writeInt(Protocol.ERROR_LOGIN);
+                          out.flush();
+                          skt.close();
+                       System.out.println("Conexion cerrada...");
                }
-
-
            }
            catch (IOException ex) {
 

@@ -12,5 +12,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql.connector.java" level="project" />
     <orderEntry type="library" name="Proyecto_2Progra3" level="project" />
+    <orderEntry type="library" name="sun.xml.bind.jaxb.core" level="project" />
   </component>
 </module>

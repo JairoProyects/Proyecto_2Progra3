@@ -5,6 +5,7 @@ import chatProtocol.IService;
 import chatProtocol.Message;
 import chatProtocol.User;
 import chatServer.Service;
+import chatServer.data.Data;
 import chatServer.data.UsuarioDao;
 
 import javax.swing.*;
@@ -125,7 +126,6 @@ public class View implements Observer {
                 };
                 int option = JOptionPane.showConfirmDialog(panel, fields, id.getText(), JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE);
                 if (option == JOptionPane.OK_OPTION) {
-                    User u = new User(id.getText(), new String(clave.getPassword()), nombre.getText());
                     try {
                         controller.register(new User(id.getText(), new String(clave.getPassword()), nombre.getText()));
                         } catch (Exception ex) {

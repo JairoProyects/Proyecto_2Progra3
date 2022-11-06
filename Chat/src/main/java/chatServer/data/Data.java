@@ -1,29 +1,33 @@
 package chatServer.data;
 
+import chatProtocol.Message;
 import chatProtocol.User;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
-    private List<User> users;
-    private UsuarioDao usuarioDao;
+//    private List<User> users;
+//    private UsuarioDao usuarioDao;
+    List<Message> messages;
     public Data() {
-        users = new ArrayList<>();
-        users.add(new User("001","001","Juan"));
-        users.add(new User("002","002","Maria"));
-        users.add(new User("003","003","Pedro"));
-
+        messages = new ArrayList<>();
+        
     }
-//    public void createUser() throws Exception {
-//        usuarioDao.create(users.get(1));
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+
+//    public List<User> getUsers() {
+//        return users;
 //    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
 }

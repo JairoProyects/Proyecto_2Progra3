@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="sun.xml.bind.jaxb.core" type="repository">
+    <properties maven-id="com.sun.xml.bind:jaxb-core:4.0.0-M1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jaxb-core-4.0.0-M1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jakarta.xml.bind-api-4.0.0-RC2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jakarta.activation-api-2.1.0-RC1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

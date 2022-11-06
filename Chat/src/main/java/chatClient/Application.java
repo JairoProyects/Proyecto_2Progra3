@@ -4,6 +4,8 @@ import chatClient.presentation.Controller;
 import chatClient.presentation.Model;
 import chatClient.presentation.View;
 import chatProtocol.User;
+import chatServer.Service;
+import chatServer.data.Data;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,7 +23,7 @@ public class Application {
         Model model= new Model();
         View view = new View();
         Controller controller =new Controller(view, model);
-        window.setSize(500,400);
+        window.setSize(600,500);
         window.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         window.setTitle("CHAT");
         try {
@@ -29,7 +31,7 @@ public class Application {
         } catch (Exception e) {}
         window.setContentPane(view.getPanel());
         window.setVisible(true);
-        User user = new User();
+        window.setLocationRelativeTo(null);
     }
 
     public static JFrame window;
