@@ -5,7 +5,6 @@ import chatProtocol.IService;
 import chatProtocol.Message;
 import chatProtocol.User;
 import chatServer.Service;
-import chatServer.data.Data;
 import chatServer.data.UsuarioDao;
 
 import javax.swing.*;
@@ -28,6 +27,7 @@ public class View implements Observer {
     private JButton post;
     private JButton logout;
     private JButton Register;
+    private JTable contactos;
 
     Model model;
     Controller controller;
@@ -154,6 +154,10 @@ public class View implements Observer {
     String receiverStyle = "background-color:white; margin-left:5px; margin-right:30px; margin-top:3px; padding:2px;";
 
     public void update(java.util.Observable updatedModel, Object properties) {
+
+        int[] cols = {TableModel.NOMBRE,TableModel.STATUS};
+        contactos.setModel(new TableModel(cols, model.getUsers()));
+        contactos.setRowHeight(30);
 
         int prop = (int) properties;
         if (model.getCurrentUser() == null) {

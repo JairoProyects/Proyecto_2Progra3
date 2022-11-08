@@ -14,10 +14,24 @@ import java.util.List;
 public class Model extends java.util.Observable {
     User currentUser;
     List<Message> messages;
+    List<User> users;
 
     public Model() {
        currentUser = null;
        messages= new ArrayList<>();
+         users= new ArrayList<>();
+         users.add(new User("111","001","Jairo"));
+        users.add(new User("222","002","Juan"));
+        users.add(new User("333","003","Cesar"));
+        users.add(new User("444","004","Andres"));
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public User getCurrentUser() {
