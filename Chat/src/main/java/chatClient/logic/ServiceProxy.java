@@ -140,15 +140,17 @@ public class ServiceProxy implements IService{
 
                     case Protocol.CONTACT_RESPONSE:
                         try {
+                            int verified = in.readInt();
+                            if(verified == 3) {
+                                // controller.dioerrormanejolaexcepcion
+
+                            } else if(verified == 0){
+                                // controller.nodioerroryvoyaagregarelusuario
+                            }
                             controller.addContactToList((User) in.readObject());
                         } catch (ClassNotFoundException ex) {
                         }
                         break;
-                        case Protocol.ERROR_CONTACT:
-                        try {
-                            controller.errorAddContact((User) in.readObject());
-                        } catch (ClassNotFoundException ex) {
-                        }
                 }
                 out.flush();
             } catch (IOException  ex) {
