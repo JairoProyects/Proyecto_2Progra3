@@ -18,7 +18,7 @@ public class Protocol {
 
     public static final int CONTACT = 1;
     public static final int CONTACT_RESPONSE = 2;
-    public static final int ERROR_CONTAC = 3;
+    public static final int ERROR_CONTACT = 3;
     public static final int ERROR_REGISTER=4;
 
 }

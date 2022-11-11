@@ -7,3 +7,7 @@ create table Users(
 	nombre varchar(10) not null,
 	primary key(id)
 );
+
+Insert into Users values ("001","1","Jairo");
+Insert  into Users values ("002","2","Juan");
+Insert  into Users values ("003","3","Cesar");

@@ -74,6 +74,15 @@ public class Controller {
         ServiceProxy.instance().checkContact(u);
     }
 
+    public  void addContactToList(User u) {
+          model.getUsers().add(u);
+          model.commit(Model.USER);
+    }
+    public void errorAddContact(User u){
+        throw   new RuntimeException("User does not exist");
+    }
+
+
     public Model getModel() {
         return model;
     }

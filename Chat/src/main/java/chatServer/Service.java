@@ -80,9 +80,9 @@ public class Service implements IService{
     public void register(User p) throws Exception{
         usuarioDao.create(p);
     }
-    public boolean checkContact(User u) throws Exception{
-       if(usuarioDao.findbyCedula(u.getId()) != null){
-           return true;
+    public User checkContact(User u) throws Exception{
+       if(usuarioDao.read(u.getId()) != null){
+           return usuarioDao.read(u.getId());
        }
        else {
            throw new Exception("User does not exist");

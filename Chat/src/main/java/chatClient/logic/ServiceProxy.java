@@ -138,12 +138,17 @@ public class ServiceProxy implements IService{
                         }
                         break;
 
-                    case Protocol.CONTACT:
+                    case Protocol.CONTACT_RESPONSE:
                         try {
-                            controller.getModel().getUsers().add((User) in.readObject());
+                            controller.addContactToList((User) in.readObject());
                         } catch (ClassNotFoundException ex) {
                         }
                         break;
+                        case Protocol.ERROR_CONTACT:
+                        try {
+                            controller.errorAddContact((User) in.readObject());
+                        } catch (ClassNotFoundException ex) {
+                        }
                 }
                 out.flush();
             } catch (IOException  ex) {
@@ -160,12 +165,13 @@ public class ServiceProxy implements IService{
          }
       );
    }
-   public boolean checkContact(User u) throws Exception {
-       if (theInstance.checkContact(u)) { // verifica si el contacto existe
-//           this.listen();
-           return true;
+   public User checkContact(User u) throws Exception {
+       try {
+              out.writeInt(Protocol.CONTACT);
+              out.writeObject(u);
+              out.flush();
+         } catch (IOException ex) {
        }
-      return false;
+         return u;
    }
-
 }

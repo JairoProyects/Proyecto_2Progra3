@@ -68,7 +68,25 @@ public class Worker {
                         System.out.println(user.getNombre()+": "+message.getMessage());
 //                        user.getNombre()
                     } catch (ClassNotFoundException ex) {}
-                    break;                     
+                    break;
+                    case Protocol.CONTACT:
+                        try {
+                            User u = (User)in.readObject();
+                            User value = service.checkContact(u);
+                            if (value != null) {
+                                out.writeInt(Protocol.CONTACT_RESPONSE);
+                                out.writeObject(value);
+                                out.flush();
+                            }
+                            else {
+                                out.writeInt(Protocol.ERROR_CONTACT);
+                                out.writeObject(null);
+                                out.flush();
+                            }
+                        } catch (ClassNotFoundException ex) {} catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        break;
                 }
                 out.flush();
             } catch (IOException  ex) {
