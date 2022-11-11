@@ -5,7 +5,6 @@ import chatProtocol.IService;
 import chatProtocol.Message;
 import chatProtocol.User;
 import chatServer.Service;
-import chatServer.data.UsuarioDao;
 
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
@@ -28,19 +27,21 @@ public class View implements Observer {
     private JButton logout;
     private JButton Register;
     private JTable contactos;
+    private JButton addContact;
+    private JTextField addC;
 
     Model model;
     Controller controller;
     IService service;
-    UsuarioDao usuarioDao;
+    Message message;
     public View() {
         loginPanel.setVisible(true);
         Application.window.getRootPane().setDefaultButton(login);
         bodyPanel.setVisible(false);
         service = new Service();
+        message = new Message();
         DefaultCaret caret = (DefaultCaret) messages.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        usuarioDao = new UsuarioDao();
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,38 +64,6 @@ public class View implements Observer {
                     clave.setBackground(Color.red);
                     JOptionPane.showMessageDialog(null, "Usuario no existe");
                 }
-
-//                try {
-                    //usuarioDao.findByReferencia(id.getText()) != null
-//                    for (int i = 0; i < usuarioDao.findAll().size(); i++) {
-//                        if(usuarioDao.findAll().get(i).getId() == id.getText()){
-//                            controller.login(u);
-//                            id.setText("");
-//                            clave.setText("");
-//                        }
-//                        else{
-//                            id.setBackground(Color.red);
-//                            clave.setBackground(Color.red);
-//                        }
-//                    }
-//                        usuarioDao.read(id.getText());
-//                    controller.login(u);
-//                    System.out.println( usuarioDao.read(id.getText()).toString());
-//                   if (id.getText() != null ) {
-//                       controller.login(u);
-//                       id.setText("");
-//                       clave.setText("");
-//                   }
-//                   } else {
-//                          id.setBackground(Color.red);
-//                          clave.setBackground(Color.red);
-//                          JOptionPane.showMessageDialog(null, "Usuario no existe");
-//                   }
-//                } catch (Exception ex) {
-//                    System.out.println("Error en login");
-//                    id.setBackground(Color.orange);
-//                    clave.setBackground(Color.orange);
-//                }
             }
         });
         logout.addActionListener(new ActionListener() {
@@ -113,7 +82,19 @@ public class View implements Observer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = mensaje.getText();
-                controller.post(text);
+//                contactos.getSelectedRow(); // Me devuelve el numero de la fila seleccionada
+                System.out.println(contactos.getSelectedRow());
+                User receiver = controller.getModel().getUserAt(contactos.getSelectedRow());
+                try {
+                   if( receiver != null){
+                       controller.post(text, receiver);
+                    }
+                   else{
+                       JOptionPane.showMessageDialog(null, "Debe seleccionar un contacto de la lista de contactos!!");
+                   }
+                } catch (Exception ex) {
+                   throw new RuntimeException(ex);
+                }
             }
         });
         //REGISTER
@@ -132,6 +113,17 @@ public class View implements Observer {
                         throw new RuntimeException(ex);
                     }
                 }
+            }
+        });
+        addContact.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                String contact = addC.getText();
+//                try {
+//                    controller.addContact(contact);
+//                } catch (Exception ex) {
+//                    throw new RuntimeException(ex);
+//                }
             }
         });
     }

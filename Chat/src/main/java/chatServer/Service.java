@@ -53,7 +53,7 @@ public class Service implements IService{
     
     public User login(User p) throws Exception{
         if (usuarioDao.read(p.getId()) != null) {
-            return p;
+            return usuarioDao.read(p.getId());
         } else {
             throw new Exception("User does not exist");
         }

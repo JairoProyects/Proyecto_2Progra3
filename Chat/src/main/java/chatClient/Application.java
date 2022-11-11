@@ -9,11 +9,14 @@ import chatServer.data.Data;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");}
         catch (Exception ex) {};
@@ -23,7 +26,7 @@ public class Application {
         Model model= new Model();
         View view = new View();
         Controller controller =new Controller(view, model);
-        window.setSize(600,500);
+        window.setSize(800,500);
         window.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         window.setTitle("CHAT");
         try {
@@ -32,6 +35,7 @@ public class Application {
         window.setContentPane(view.getPanel());
         window.setVisible(true);
         window.setLocationRelativeTo(null);
+
     }
 
     public static JFrame window;

@@ -95,10 +95,20 @@ public class Server {
     }
     
     public void deliver(Message message){
+//        for(Worker wk:workers){
+//            wk.deliver(message);
+//        }
+//       if(workers.indexOf(message.getReceiver())!=-1){
+//           workers.get(workers.indexOf(message.getReceiver())).deliver(message);
+//       } else{
+//           System.out.println("USER ERROR ");
+//       }
         for(Worker wk:workers){
-            wk.deliver(message);
+            if(wk.user.equals(message.getReceiver())){
+                wk.deliver(message);
+            }
         }
-    } 
+    }
     
     public void remove(User u){
         for(Worker wk:workers) if(wk.user.equals(u)){workers.remove(wk);break;}

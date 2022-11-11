@@ -64,8 +64,9 @@ public class Worker {
                         message = (Message)in.readObject();
                         message.setSender(user);
                         srv.deliver(message);
-                        service.post(message); // if wants to save messages, ex. recivier no logged on
+//                        service.post(message); // if wants to save messages, ex. recivier no logged on
                         System.out.println(user.getNombre()+": "+message.getMessage());
+//                        user.getNombre()
                     } catch (ClassNotFoundException ex) {}
                     break;                     
                 }

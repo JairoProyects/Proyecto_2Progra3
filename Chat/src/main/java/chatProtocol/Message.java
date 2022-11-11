@@ -8,14 +8,16 @@ import java.io.Serializable;
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class Message implements Serializable{
     User sender;
+    User Receiver; // Este sera el User que recibe el mensaje
 //    @XmlID
     String message;
     public Message() {
     }
 
-    public Message(User sedner,String message) {
+    public Message(User sedner,String message,User Receiver) {
         this.sender = sedner;
         this.message = message;
+        this.Receiver=Receiver;
     }
 
     public User getSender() {
@@ -33,5 +35,12 @@ public class Message implements Serializable{
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
+    public User getReceiver() {
+        return Receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        Receiver = receiver;
+    }
 }
