@@ -129,13 +129,21 @@ public class ServiceProxy implements IService{
                 method = in.readInt();
                 System.out.println("DELIVERY");
                 System.out.println("Operacion: "+method);
-                switch(method){
-                case Protocol.DELIVER:
-                    try {
-                        Message message=(Message)in.readObject();
-                        deliver(message);
-                    } catch (ClassNotFoundException ex) {}
-                    break;
+                switch(method) {
+                    case Protocol.DELIVER:
+                        try {
+                            Message message = (Message) in.readObject();
+                            deliver(message);
+                        } catch (ClassNotFoundException ex) {
+                        }
+                        break;
+
+                    case Protocol.CONTACT:
+                        try {
+                            controller.getModel().getUsers().add((User) in.readObject());
+                        } catch (ClassNotFoundException ex) {
+                        }
+                        break;
                 }
                 out.flush();
             } catch (IOException  ex) {
@@ -152,4 +160,12 @@ public class ServiceProxy implements IService{
          }
       );
    }
+   public boolean checkContact(User u) throws Exception {
+       if (theInstance.checkContact(u)) { // verifica si el contacto existe
+//           this.listen();
+           return true;
+       }
+      return false;
+   }
+
 }

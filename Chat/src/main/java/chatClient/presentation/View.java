@@ -118,12 +118,12 @@ public class View implements Observer {
         addContact.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                String contact = addC.getText();
-//                try {
-//                    controller.addContact(contact);
-//                } catch (Exception ex) {
-//                    throw new RuntimeException(ex);
-//                }
+                String contact = addC.getText();
+                try {
+                    controller.addContact(contact);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

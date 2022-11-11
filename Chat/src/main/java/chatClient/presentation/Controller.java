@@ -25,10 +25,16 @@ public class Controller {
         usuarioDao = new UsuarioDao();
         service = new Service();
     }
-
+    public void checkContact(User u){
+        try {
+            service.checkContact(u);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void login(User u) throws Exception{
         User logged=ServiceProxy.instance().login(u);
-        System.out.println(u.getId() + " " + u.getClave() + " " + u.getNombre());
+       // System.out.println(u.getId() + " " + u.getClave() + " " + u.getNombre());
 //        usuarioDao.create(logged);
      //   System.out.println(usuarioDao.read("001").getId() + " " + usuarioDao.read("001").getClave());
         model.setCurrentUser(logged);
@@ -62,9 +68,11 @@ public class Controller {
     public void register(User u) throws Exception{
         ServiceProxy.instance().register(u);
     }
-//    void addContact(User u) throws Exception{
-//        ServiceProxy.instance().login(u);
-//    }
+    void addContact(String id) throws Exception{
+        User u = new User();
+        u.setId(id);
+        ServiceProxy.instance().checkContact(u);
+    }
 
     public Model getModel() {
         return model;
