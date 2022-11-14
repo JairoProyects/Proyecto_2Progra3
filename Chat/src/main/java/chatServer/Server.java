@@ -71,6 +71,20 @@ public class Server {
                         skt.close();
                         System.out.println("Conexion cerrada...");
                     } break;
+                   case Protocol.CONTACT:
+                       try{
+                           User user = service.checkContact((User) in.readObject());
+                            out.writeInt(Protocol.ERROR_NO_ERROR);
+                            out.writeObject(user);
+                            out.flush();
+                       }
+                       catch(Exception ex){
+                            out.writeInt(Protocol.ERROR_CONTACT);
+                            out.flush();
+                            skt.close();
+                            System.out.println("Conexion cerrada...");
+                       }
+                       break;
                    default:  out.writeInt(Protocol.ERROR_LOGIN);
                           out.flush();
                           skt.close();

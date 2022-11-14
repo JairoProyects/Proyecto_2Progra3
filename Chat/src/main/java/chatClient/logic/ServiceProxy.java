@@ -142,8 +142,8 @@ public class ServiceProxy implements IService{
 
                     case Protocol.CONTACT_RESPONSE:
                         try {
-                           // int verified = in.readInt();
-                            int verified = Protocol.ERROR_NO_ERROR;
+                         //   int verified = in.readInt();
+                           int verified = Protocol.ERROR_NO_ERROR;
                             if (verified == Protocol.ERROR_NO_ERROR) {
                                 User user = (User) in.readObject();
                                 controller.addContactToList(user);
