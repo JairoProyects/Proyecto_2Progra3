@@ -10,6 +10,8 @@ import java.net.Socket;
 import javax.swing.SwingUtilities;
 import chatProtocol.IService;
 import chatProtocol.Message;
+import chatServer.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,15 +142,16 @@ public class ServiceProxy implements IService{
 
                     case Protocol.CONTACT_RESPONSE:
                         try {
-                            int verified = in.readInt();
-                            if(verified == 3) {
-                                // controller.dioerrormanejolaexcepcion
-
-                            } else if(verified == 0){
-                                // controller.nodioerroryvoyaagregarelusuario
+                           // int verified = in.readInt();
+                            int verified = Protocol.ERROR_NO_ERROR;
+                            if (verified == Protocol.ERROR_NO_ERROR) {
+                                User user = (User) in.readObject();
+                                controller.addContactToList(user);
+                            } else if (verified == Protocol.ERROR_CONTACT){
+                                throw new Exception("Contact not found");
                             }
-                            controller.addContactToList((User) in.readObject());
-                        } catch (ClassNotFoundException ex) {
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
                         }
                         break;
                 }
@@ -170,10 +173,13 @@ public class ServiceProxy implements IService{
    public User checkContact(User u) throws Exception {
        try {
               out.writeInt(Protocol.CONTACT);
+           Service serviceS = new Service();
+              User user = serviceS.checkContact(u);
               out.writeObject(u);
-              out.flush();
+              out.flush(); // falta verificar si el usuario existe
          } catch (IOException ex) {
        }
          return u;
    }
 }
+

@@ -6,6 +6,7 @@ import chatProtocol.User;
 import chatServer.Service;
 import chatServer.data.UsuarioDao;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Controller {
@@ -69,15 +70,26 @@ public class Controller {
         ServiceProxy.instance().register(u);
     }
     void addContact(String id) throws Exception{
-        User u = new User();
+        User u = new User(); // el controller recibe el nombre y
         u.setId(id);
-        ServiceProxy.instance().checkContact(u);
+        localService.checkContact(u); //Debe invocar el método (checkContact) en el Proxy
     }
 
-    public  void addContactToList(User u) {
-          model.getUsers().add(u);
-          model.commit(Model.USER);
+    public void addContactToList(User u) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    model.getUsers().add(u);
+                    model.commit(Model.USER);
+                }
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
+
     public void errorAddContact(User u){
         throw   new RuntimeException("User does not exist");
     }

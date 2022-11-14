@@ -85,7 +85,7 @@ public class Service implements IService{
            return usuarioDao.read(u.getId());
        }
        else {
-           throw new Exception("User does not exist");
+           return null;
        }
     }
 }

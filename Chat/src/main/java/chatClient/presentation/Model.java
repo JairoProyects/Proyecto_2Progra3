@@ -24,7 +24,7 @@ public class Model extends java.util.Observable {
        usuarioDao = new UsuarioDao();
 //         users= usuarioDao.findAll();
         users = new ArrayList<>();
-         users.add(new User("111","001","Jairo"));
+        users.add(new User("111","001","Jairo"));
         users.add(new User("444","004","Andres"));
     }
     User getUserAt(int index){

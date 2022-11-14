@@ -72,7 +72,7 @@ public class Worker {
                     case Protocol.CONTACT:
                         try {
                             User u = (User)in.readObject();
-                            User value = service.checkContact(u);
+                            User value = srv.service.checkContact(u);
                             if (value != null) {
                                 out.writeInt(Protocol.CONTACT_RESPONSE);
                                 out.writeObject(value);
