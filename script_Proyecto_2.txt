@@ -8,6 +8,17 @@ create table Users(
 	primary key(id)
 );
 
+create table Messages(
+	message  varchar(500) not null,
+	sender   varchar(10)  not null,
+	receiver varchar(10)  not null,
+	Foreign key(sender)   References Users(id),
+	Foreign key(receiver) References Users(id)
+);
+
+
 Insert into Users values ("001","1","Jairo");
-Insert  into Users values ("002","2","Juan");
-Insert  into Users values ("003","3","Cesar");
+Insert into Users values ("002","2","Andres");
+
+Insert into Messages values ("Hola mundo","001","002");
+Insert into Messages values ("Hola mundo","002","001");

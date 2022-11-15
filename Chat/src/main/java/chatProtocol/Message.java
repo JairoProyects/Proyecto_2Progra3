@@ -1,14 +1,10 @@
 package chatProtocol;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlID;
-
 import java.io.Serializable;
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class Message implements Serializable{
     User sender;
-    User Receiver; // Este sera el User que recibe el mensaje
+    User receiver; // Este sera el User que recibe el mensaje
 //    @XmlID
     String message;
     public Message() {
@@ -17,7 +13,7 @@ public class Message implements Serializable{
     public Message(User sedner,String message,User Receiver) {
         this.sender = sedner;
         this.message = message;
-        this.Receiver=Receiver;
+        this.receiver =Receiver;
     }
 
     public User getSender() {
@@ -37,10 +33,10 @@ public class Message implements Serializable{
     }
 
     public User getReceiver() {
-        return Receiver;
+        return receiver;
     }
 
     public void setReceiver(User receiver) {
-        Receiver = receiver;
+        this.receiver = receiver;
     }
 }
