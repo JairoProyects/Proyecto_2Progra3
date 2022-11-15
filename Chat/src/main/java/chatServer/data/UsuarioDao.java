@@ -93,7 +93,7 @@ public class UsuarioDao {
         return resultado;
     }
 
-    public User from(ResultSet rs, String alias) throws Exception {
+    public static User from(ResultSet rs, String alias) throws Exception {
         User e = new User("", "", "");
         e.setId(rs.getString(alias + ".id"));
         e.setClave(rs.getString(alias + ".clave"));

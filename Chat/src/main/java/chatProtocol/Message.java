@@ -7,6 +7,7 @@ public class Message implements Serializable{
     User receiver; // Este sera el User que recibe el mensaje
 //    @XmlID
     String message;
+    String id;
     public Message() {
     }
 
