@@ -73,8 +73,9 @@ public class Worker {
                         try {
                             User u = (User)in.readObject();
                             User value = srv.service.checkContact(u);
+                            out.writeInt(Protocol.CONTACT_RESPONSE);
                             if (value != null) {
-                                out.writeInt(Protocol.CONTACT_RESPONSE);
+                                out.writeInt(Protocol.ERROR_NO_ERROR);
                                 out.writeObject(value);
                                 out.flush();
                             }
